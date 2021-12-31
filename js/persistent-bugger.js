@@ -12,16 +12,15 @@
     4 --> 0 (because 4 is already a one-digit number)
 */
 function persistence(num) {
-  let arrNumber = num.toString().split('');
-  let newNumber = arrNumber.reduce(
-    (accumulator, current) => accumulator * current,
-    1
-  );
-  if (newNumber.toString().split('').length === 1) {
-    return newNumber;
-  } else if (newNumber.toString().split('').length > 1) {
-    return persistence(newNumber);
-  }
+  return num.toString().length > 1
+    ? 1 +
+        persistence(
+          num
+            .toString()
+            .split('')
+            .reduce((a, b) => a * b)
+        )
+    : 0;
 }
 
 console.log(persistence(39));
